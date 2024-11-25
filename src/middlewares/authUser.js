@@ -1,8 +1,9 @@
-import { verify } from 'jsonwebtoken'
+import pkg from 'jsonwebtoken'
+const { verify } = pkg
 
 async function handleUser(req, res, next) {
     try {
-        const authToken = request.headers.authorization
+        const authToken = req.headers.authorization
         if(!authToken) {
             return response.status(401).json({ status: 'Não há token de autorização'})
         }
