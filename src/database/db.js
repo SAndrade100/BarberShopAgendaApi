@@ -1,14 +1,21 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from 'mongoose'
+import dotenv from 'dotenv'
 
-dotenv.config();
+import counterSingleton from './counterSingleton.js'
+
+dotenv.config()
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_DOCKER);
-    console.log('MongoDB connected');
+
+    await mongoose.connect(process.env.MONGO_DOCKER)
+    await mongoose.syncIndexes()
+    console.log('MongoDB connected')
+
+    await counterSingleton()
+
   } catch (error) {
-    console.error('MongoDB connection failed', error.message);
+    console.error('MongoDB connection failed', error.message)
     process.exit(1);
   }
 };
