@@ -17,6 +17,10 @@ const UserSchema = new Schema({
     apelido: {
         type: String,
         required: false
+    },
+    senha: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
